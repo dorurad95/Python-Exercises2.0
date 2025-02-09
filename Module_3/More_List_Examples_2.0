@@ -1,0 +1,99 @@
+      #1. If you have a list l1, then the following assignment: l2 = l1 does not make a copy of the l1 list, but makes the variables l1 and l2 point to one and the same list in memory. For example:
+vehicles_one = ['car', 'bicycle', 'motor']
+print(vehicles_one) # outputs: ['car', 'bicycle', 'motor']
+
+vehicles_two = vehicles_one
+del vehicles_one[0] # deletes 'car'
+print(vehicles_two) # outputs: ['bicycle', 'motor']
+##############################################################################################################################################
+
+      #2. If you want to copy a list or part of the list, you can do it by performing slicing:
+colors = ['red', 'green', 'orange']
+
+copy_whole_colors = colors[:]  # copy the entire list
+copy_part_colors = colors[0:2]  # copy part of the list [red, green]
+##############################################################################################################################################  
+      #3. You can use negative indices to perform slices, too. For example:
+sample_list = ["A", "B", "C", "D", "E"]
+new_list = sample_list[2:-1]
+print(new_list)  # outputs: ['C', 'D']
+##############################################################################################################################################
+      #4. The start and end parameters are optional when performing a slice: list[start:end], e.g.:
+my_list = [1, 2, 3, 4, 5]
+slice_one = my_list[2: ]
+slice_two = my_list[ :2]
+slice_three = my_list[-2: ]
+
+print(slice_one)  # outputs: [3, 4, 5]
+print(slice_two)  # outputs: [1, 2]
+print(slice_three)  # outputs: [4, 5]
+##############################################################################################################################################
+      #5. You can delete slices using the del instruction:
+my_list = [1, 2, 3, 4, 5]
+del my_list[0:2]
+print(my_list)  # outputs: [3, 4, 5]
+
+del my_list[:]
+print(my_list)  # deletes the list content, outputs: []
+##############################################################################################################################################
+      #6. You can test if some items exist in a list or not using the keywords in and not in, e.g.:
+my_list = ["A", "B", 1, 2]
+
+print("A" in my_list)  # outputs: True
+print("C" not in my_list)  # outputs: True
+print(2 not in my_list)  # outputs: False
+##############################################################################################################################################
+      #Exercise 1
+list_1 = ["A", "B", "C"]
+list_2 = list_1 #["A", "B", "C"]
+list_3 = list_2 #["A", "B", "C"]
+
+del list_1[0] #["B", "C"]
+del list_2[0] #["C"]
+
+print(list_3) #will print ['C']
+##############################################################################################################################################
+      #Exercise 2
+list_1 = ["A", "B", "C"]
+list_2 = list_1 # ["A", "B", "C"]
+list_3 = list_2 #  ["A", "B", "C"]
+
+del list_1[0] # ["B", "C"]
+del list_2    # [] empty list
+
+print(list_3) #Will print ['B', 'C'] bcs list_2 does not get a new list; it becomes another name (or reference) for the same list object that list_1 is pointing to. 
+                                      #The same thing happens with list_3 = list_2; now list_3 is also referencing that same list.
+###############################################################################################################################################
+      #Exercise 3
+list_1 = ["A", "B", "C"]
+list_2 = list_1 # ["A", "B", "C"]
+list_3 = list_2 # ["A", "B", "C"]
+
+del list_1[0] # ["B", "C"]
+del list_2[:] # []
+
+print(list_3) # will print empty list []
+###############################################################################################################################################
+      #Exercise 4
+list_1 = ["A", "B", "C"]
+list_2 = list_1[:]
+list_3 = list_2[:]
+
+del list_1[0]
+del list_2[0]
+
+print(list_3) # will print ['A', 'B', 'C']
+#Explication: List Slicing: When you use list_1[:], you create a shallow copy of list_1. This means list_2 becomes a new list with the same elements as list_1 but as a separate object in memory. 
+#The same happens when you do list_3 = list_2[:], creating yet another independent copy.
+#list_1, list_2, and list_3 are now three separate lists with identical content at this point: ["A", "B", "C"].
+###############################################################################################################################################
+        #Exercise 5:
+my_list = [1, 2, "in", True, "ABC"]
+
+print(1 ??? my_list)  # outputs True and ???? = in
+print("A" ??? my_list)  # outputs True and ???? not in
+print(3 ??? my_list)  # outputs True and ??? = not in
+print(False ??? my_list)  # outputs False and ???? = in
+###############################################################################################################################################
+
+
