@@ -1,0 +1,89 @@
+my_list = [8, 10, 6, 2, 4]  # list to sort
+swapped = True  # It's a little fake, we need it to enter the while loop.
+
+while swapped:
+    swapped = False  # no swaps so far
+    for i in range(len(my_list) - 1): # we need (5 - 1) comparisions
+        if my_list[i] > my_list[i + 1]: #compare adjacent elements
+            swapped = True  # a swap occurred!
+            my_list[i], my_list[i + 1] = my_list[i + 1], my_list[i]
+
+print(my_list) # Result [2, 4, 6, 8, 10]
+
+####################################################################################################################################
+
+    # How to sort a list easy in Python:
+
+my_list = [8, 10, 6, 2, 4]
+my_list.sort()
+print(my_list)
+#result: [2, 4, 6, 8, 10]
+
+####################################################################################################################################
+      #Sort an generated list by user input:
+      #user insert how many elements want to sort, after that insert all that 5 elements and at the final we will se the list sorted.
+my_list = []
+swapped = True
+num = int(input("How many elements do you want to sort: "))
+
+for i in range(num):
+    val = float(input("Enter a list element: "))
+    my_list.append(val)
+
+while swapped:
+    swapped = False
+    for i in range(len(my_list) - 1):
+        if my_list[i] > my_list[i + 1]:
+            swapped = True
+            my_list[i], my_list[i + 1] = my_list[i + 1], my_list[i]
+
+print("\nSorted:")
+print(my_list)
+
+####################################################################################################################################
+      #Reverse list:
+lst = [5, 3, 1, 2, 4]
+print(lst)
+
+lst.reverse()
+print(lst)  # outputs: [4, 2, 1, 3, 5]
+
+####################################################################################################################################
+      #Another reverse list:
+a = "A"
+b = "B"
+c = "C"
+d = " "
+
+lst = [a, b, c, d]
+lst.reverse()
+
+print(lst)
+#Result: [' ', 'C', 'B', 'A']
+
+####################################################################################################################################
+
+      #Slice lists
+# Copying the entire list.
+list_1 = [1]
+list_2 = list_1[:]  #using [:] you create a new list.
+list_1[0] = 2
+print(list_2) #will print 2, not 1.
+
+# Copying some part of the list.
+my_list = [10, 8, 6, 4, 2]
+new_list = my_list[1:3] #end - start means 3 - 1 = 2. You will use 2 elemnts, the one with indices equal to 1 and 2 (but not 3). I mean the 3th elemnt from list are not displayed.
+print(new_list) #result: [8, 6]
+     #Ver 2:
+# Copying the entire list.
+list_1 = [1]
+list_2 = list_1[:]  #using [:] you create a new list.
+list_1[0] = 2
+print(list_2) #will print 2, not 1.
+
+# Copying some part of the list.
+my_list = [10, 8, 6, 4, 2]
+new_list = my_list[2:5] #end - start means 5 - 2 = 3. 
+print(new_list) #result: [6 , 4, 2]
+
+
