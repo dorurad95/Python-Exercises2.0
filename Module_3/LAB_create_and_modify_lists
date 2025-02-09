@@ -1,0 +1,33 @@
+#This is an LAB execise to Familiarize the student with:
+#1. creating and modifying simple lists;
+#2. using methods to modify lists.
+
+# step 1: create an empty list named beatles;
+beatles = []
+print("Step 1:", beatles)
+
+#step 2: use the append() method to add the following members of the band to the list: John Lennon, Paul McCartney, and George Harrison;
+beatles.append("John Lennon")
+beatles.append("Paul McCartney")
+beatles.append("George Harrison")
+print("Step 2:", beatles)
+
+#step 3: use the for loop and the append() method to prompt the user to add the following members of the band to the list: Stu Sutcliffe, and Pete Best;
+additional_beatles = ["Stu Sutcliffe, Pete Best"]
+for beatle in additional_beatles:
+    beatles.append("Stu Sutcliffe")
+    beatles.append("Pete Best")
+print("Step 3:", beatles)
+
+#step 4: use the del instruction to remove Stu Sutcliffe and Pete Best from the list;
+del beatles[3]
+del beatles[3]
+print("Step 4:", beatles)
+
+#step 5: use the insert() method to add Ringo Starr to the beginning of the list.
+beatles.insert(0, "Ringo Starr")
+print("Step 5:", beatles)
+
+
+# # testing list legth
+print("The Fab", len(beatles))
