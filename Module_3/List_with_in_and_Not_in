@@ -1,0 +1,31 @@
+my_list = [0, 3, 12, 8, 2]
+
+print(5 in my_list) #False
+print(5 not in my_list) #True
+print(12 in my_list) #True
+
+#########################################################################################
+        #Lists - example with simple programs
+my_list = [17, 3, 11, 5, 1, 9, 7, 15, 13]
+largest = my_list[0] #This is 17
+
+for i in my_list:
+    if i > largest: #If i > 17
+        largest = i # 17 = i
+
+print(largest) 
+#Result: 17 because only 17 is >largest.
+
+#########################################################################################
+      #You can also write in another method:
+my_list = [17, 3, 11, 5, 1, 9, 7, 15, 13]
+largest = my_list[0]
+
+for i in my_list[1:]: #will start from 3 to compare and 17 will be the response because only True is 17 > largest.
+    if i > largest:
+        largest = i
+
+print(largest)
+
+#########################################################################################
+
