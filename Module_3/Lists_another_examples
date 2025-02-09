@@ -1,0 +1,29 @@
+my_list = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+to_find = 5
+found = False
+
+for i in range(len(my_list)):
+    found = my_list[i] == to_find
+    if found:
+        break
+
+if found:
+    print("Element found at index", i)
+else:
+    print("absent")
+#Result: element 5 is finded at position 4. 
+
+#########################################################################################################################
+          #Lottery exercise:
+drawn = [5, 11, 9, 42, 3, 49] #list with drawn numbers
+bets = [3, 7, 11, 42, 34, 49] #list with your bets
+hits = 0 #this counts your hits
+
+for number in bets: #take all the numbers from bets and compare with drawn
+    if number in drawn: 
+        hits += 1
+
+print(hits)
+#Result: 4 hits.
+#########################################################################################################################
+
