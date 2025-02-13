@@ -1,0 +1,49 @@
+#the function: list.append(value)
+#list.insert(location, value)
+
+numbers = [111, 7, 2, 1]
+print(len(numbers))  # 4
+print(numbers)   # [111, 7, 2, 1]
+
+###
+
+numbers.append(4) 
+
+print(len(numbers)) # 5
+print(numbers) # [111, 7, 2, 1, 4]
+
+###
+
+numbers.insert(0, 222)
+print(len(numbers)) # 6
+print(numbers) # [222, 111, 7, 2, 1]
+
+#
+####################################################################################################################
+        Adding elements to a list: continued.
+my_list = []  # Creating an empty list.
+
+for i in range(5):
+    my_list.append(i + 1)
+
+print(my_list)  # [1, 2, 3, 4, 5]
+
+        Var 2:
+my_list = []  # Creating an empty list.
+
+for i in range(5):
+    my_list.insert(0, i + 1)
+
+print(my_list)  # [5, 4, 3, 2, 1] this is the reverse order using insert 
+
+
+
+
+
+
+
+
+
+
+
+
