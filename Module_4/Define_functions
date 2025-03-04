@@ -84,10 +84,155 @@ adding(3, c = 1, b = 2)
 #the arguments for c and b are specified as keyword ones.
 
 #########################################################################################################################
+
 def adding(a, b, c):
     print(a, "+", b, "+", c, "=", a + b + c)
 adding(4, 3, c = 2)
 #Result: 4 + 3 + 2 = 9
 
+################################### Parametrized Functions #################################################################
+
+def introduction(first_name, last_name="Smith"):
+    print("Hello, my name is", first_name, last_name)
+introduction("James", "Doe")
+#Result: Hello, my name is James Doe.
+
+############################################################################################################################
+
+def introduction(first_name, last_name="Smith"):
+    print("Hello, my name is", first_name, last_name)
+introduction("Henry)    #or introduction(fist_name = "William")
+#Result: Hello, my name is Henry Smith
+         Hello, my name is William Smith
+
+############################################################################################################################
+
+def introduction(first_name="John", last_name="Smith"):
+    print("Hello, my name is", first_name, last_name)
+introduction()
+#Result: Hello, my name is John Smith
+
+############################################################################################################################
+
+def introduction(first_name="John", last_name="Smith"):
+    print("Hello, my name is", first_name, last_name)
+introduction(last_name="Hopkins")
+#Result: Hello, my name is John Hopkins
+
+#########  An example of a one-parameter function:  ###################################################################################################
+
+#You can pass information to functions by using parameters. Your functions can have as many parameters as you need.
+def hi(name):
+    print("Hi,", name)
+
+hi("Greg")
+#Result: Hi Greg
+
+##########An example of a two-parameter function:########################################################################################################
+
+def hi_all(name_1, name_2):
+    print("Hi,", name_2)
+    print("Hi,", name_1)
+
+hi_all("Sebastian", "Konrad")
+#Result: Hi, Sebastian 
+         Hi, Konrad
+
+#########  An example of a three-parameter function:  ##############################################################################################################
+
+def address(street, city, postal_code):
+    print("Your address is:", street, "St.,", city, postal_code)
+
+s = input("Street: ")
+p_c = input("Postal Code: ")
+c = input("City: ")
+
+address(s, c, p_c)
+#Result: Street: Ninsorii      #You need to insert the name of the street
+         Postal code: 032454   #You need to insert the postal code
+         City: Bucharest       #You need to insert the city
+#Final result: Your address is: Ninsorii St., Bucharest 032454
+
+#########  You can pass arguments to a function using the following techniques  ###############################################################################################
+# Positional argument passing in which the order of arguments passed matters (Ex. 1),
+# Keyword (named) argument passing in which the order of arguments passed doesn't matter (Ex. 2),
+# A mix of positional and keyword argument passing (Ex. 3).
+
+# Ex. 1
+def subtra(a, b):
+    print(a - b)
+
+subtra(5, 2)    # outputs: 3
+subtra(2, 5)    # outputs: -3
+
+######################################################
+
+# Ex. 2
+def subtra(a, b):
+    print(a - b)
+
+subtra(a=5, b=2)    # outputs: 3
+subtra(b=2, a=5)    # outputs: 3
+
+######################################################
+
+# Ex. 3
+def subtra(a, b):
+    print(a - b)
+
+subtra(5, b=2)    # outputs: 3
+subtra(5, 2)    # outputs: 3
+
+######################################################
+#It's important to remember that positional arguments mustn't follow keyword arguments. That's why if you try to run the following snippet:
+def subtra(a, b):
+    print(a - b)
+
+subtra(5, b=2)    # outputs: 3
+subtra(a=5, 2)    # Syntax Error
 
 
+########### You can use the keyword argument passing technique to pre-define a value for a given argument:  ######################################################3
+def name(first_name, last_name="Smith"):
+    print(first_name, last_name)
+
+name("Andy")    # outputs: Andy Smith
+name("Betty", "Johnson")    # outputs: Betty Johnson (the keyword argument replaced by "Johnson")
+
+################################################################################################################################################################################################
+EXERCISES:
+def intro(a="James Bond", b="Bond"):
+    print("My name is", b + ".", a + ".")
+
+intro()
+#Result: My name is Bond. James Bond.
+
+####################################################################
+
+def intro(a="James Bond", b="Bond"):
+    print("My name is", b + ".", a + ".")
+
+intro(b="Sean Connery")
+#Result: My name is Sean Connery. James Bond.
+
+####################################################################
+
+def intro(a, b="Bond"):
+    print("My name is", b + ".", a + ".")
+
+intro("Susan")
+#Result: My name is Bond. Susan.
+
+####################################################################
+
+def add_numbers(a, b=2, c):
+    print(a + b + c)
+
+add_numbers(a=1, c=3)
+#Result: SyntaxError - a non-default argument (c) follows a default argument (b=2).
+To be correct, this should be written:
+def add_numbers(a, b=2, c=3):  #You can put here 0 as well.
+    print(a + b + c)
+
+add_numbers(a=1, c=3)          #You need to put an value to C here to make the calculation. The program will use the value of C=3 from here to make 1 + 2 + 3 = 6.
+#Result: 6.
