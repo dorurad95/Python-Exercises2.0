@@ -1,0 +1,17 @@
+value = None
+if value is None:
+    print("Sorry, you don't carry any value")
+#Result: Sorry, you don't carry any value
+
+#########################################################################################################
+
+def strange_function(n):
+    if(n % 2 == 0):
+        return True
+print(strange_function(2))
+print(strange_function(1))
+# Result: True (pt ca restul impartirii lui 2 la 2 este 0. deci 0 == 0 deci True)
+          None (pt ca restul impartirii lui 1 la 2 nu este 0, deci n != 0 )
+
+
+#########################################################################################################
