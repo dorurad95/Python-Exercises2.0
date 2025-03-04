@@ -1,0 +1,149 @@
+Scenario
+Your task is to write and test a function which takes three arguments (a year, a month, and a day of the month) and returns the corresponding day of the year, or returns None if any of the arguments is invalid.
+
+Use the previously written and tested functions. Add some test cases to the code. This test is only a beginning.
+
+def is_year_leap(year):
+    if (year % 4 == 0 and year % 100 != 0) or (year % 400 == 0):
+        return True
+    return False
+
+test_data = [1900, 2000, 2016, 1987]
+test_results = [False, True, True, False]
+for i in range(len(test_data)):
+	yr = test_data[i]
+	print(yr,"->",end="")
+	result = is_year_leap(yr)
+	if result == test_results[i]:
+		print("OK")
+	else:
+		print("Failed")
+
+def days_in_month(year, month):
+ # Lista cu numărul de zile pe lună (februarie e 28 implicit)
+    days_per_month = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
+    
+    # Validare: dacă luna nu e între 1 și 12, returnăm None
+    if month < 1 or month > 12:
+        return None
+    
+    # Ajustăm februarie în funcție de anul bisect
+    if month == 2:
+        if is_year_leap(year):
+            return 29
+        return 28
+    
+    # Pentru alte luni, returnăm direct din listă (luna 1 = index 0)
+    return days_per_month[month - 1]
+
+
+test_years = [1900, 2000, 2016, 1987]
+test_months = [2, 2, 1, 11]
+test_results = [28, 29, 31, 30]
+for i in range(len(test_years)):
+	yr = test_years[i]
+	mo = test_months[i]
+	print(yr, mo, "->", end="")
+	result = days_in_month(yr, mo)
+	if result == test_results[i]:
+		print("OK")
+	else:
+		print("Failed")
+
+
+def day_of_year(year, month, day):
+# Validare an (simplă, doar > 0)
+    if year < 1:
+        return None
+    
+    # Verificăm luna și obținem zilele din lună
+    days = days_in_month(year, month)
+    if days is None:  # Luna e invalidă
+        return None
+    
+    # Validăm ziua
+    if day < 1 or day > days:
+        return None
+    
+    # Calculăm ziua din an
+    total_days = 0
+    for m in range(1, month):  # Suma zilelor din lunile precedente
+        total_days += days_in_month(year, m)
+    total_days += day  # Adăugăm ziua curentă
+    
+    return total_days
+
+# Testele existente pentru is_year_leap
+test_data = [1900, 2000, 2016, 1987]
+test_results = [False, True, True, False]
+for i in range(len(test_data)):
+    yr = test_data[i]
+    print(yr, "->", end="")
+    result = is_year_leap(yr)
+    if result == test_results[i]:
+        print("OK")
+    else:
+        print("Failed")
+
+# Testele existente pentru days_in_month
+test_years = [1900, 2000, 2016, 1987]
+test_months = [2, 2, 1, 11]
+test_results = [28, 29, 31, 30]
+for i in range(len(test_years)):
+    yr = test_years[i]
+    mo = test_months[i]
+    print(yr, mo, "->", end="")
+    result = days_in_month(yr, mo)
+    if result == test_results[i]:
+        print("OK")
+    else:
+        print("Failed")
+
+# Test pentru day_of_year
+print("\nTeste pentru day_of_year:")
+test_cases = [
+    (2000, 12, 31, 366),  # An bisect, ultima zi
+    (1900, 2, 28, 59),    # An nebisect, 28 feb
+    (2016, 1, 1, 1),      # An bisect, prima zi
+    (1987, 11, 30, 334),  # Noiembrie normal
+    (2023, 13, 1, None),  # Lună invalidă
+    (2023, 2, 30, None),  # Zi invalidă (februarie)
+    (0, 1, 1, None)       # An invalid
+]
+for year, month, day, expected in test_cases:
+    print(f"{year}/{month}/{day} ->", end="")
+    result = day_of_year(year, month, day)
+    if result == expected:
+        print("OK")
+    else:
+        print(f"Failed (got {result}, expected {expected})")
+print(day_of_year(2000, 12, 31))
+
+
+#Return:
+1900 ->OK
+2000 ->OK
+2016 ->OK
+1987 ->OK
+1900 2 ->OK
+2000 2 ->OK
+2016 1 ->OK
+1987 11 ->OK
+1900 ->OK
+2000 ->OK
+2016 ->OK
+1987 ->OK
+1900 2 ->OK
+2000 2 ->OK
+2016 1 ->OK
+1987 11 ->OK
+
+Teste pentru day_of_year:
+2000/12/31 ->OK
+1900/2/28 ->OK
+2016/1/1 ->OK
+1987/11/30 ->OK
+2023/13/1 ->OK
+2023/2/30 ->OK
+0/1/1 ->OK
+366
