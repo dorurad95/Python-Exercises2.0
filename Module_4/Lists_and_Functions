@@ -1,0 +1,47 @@
+# The first is: may a list be sent to a function as an argument?
+# Of course it may! Any entity recognizable by Python can play the role of a function argument, although it has to be assured that the function is able to cope with it.
+# So, if you pass a list to a function, the function has to handle it like a list.
+# A function like this one here:
+
+def list_sum(lst):
+    s = 0
+    
+    for elem in lst:
+        s += elem
+    
+    return s
+print(list_sum([5, 4, 3]))
+#Result: 12
+
+##########################################################################################################################################################
+
+def list_sum(lst):
+    s = 0
+    
+    for elem in lst:
+        s += elem
+    
+    return s
+print(list_sum(5))
+# Return: TypeError: 'int' object is not iterable
+# This is caused by the fact that a single integer value mustn't be iterated through by the for loop
+
+##########################################################################################################################################################
+
+# The second question is: may a list be a function result?
+
+# Yes, of course! Any entity recognizable by Python can be a function result.
+
+# Look at the code in the editor. The program's output will be like this: [4, 3, 2, 1, 0]
+
+def strange_list_fun(n):             #defines a function that receives a parameter n.
+
+    strange_list = []                # creates an empty list called strange_list
+    
+    for i in range(0, n):            #iterates over the numbers from 0 to n-1 (in this case, from 0 to 4, because n = 5)
+        strange_list.insert(0, i)    #adds each number to position 0 of the list (i.e. at the beginning), pushing existing elements further to the right.
+    
+    return strange_list              # returns the final list
+
+print(strange_list_fun(5))           # displays [4, 3, 2, 1, 0]
+#Result: [4, 3, 2, 1, 0]
