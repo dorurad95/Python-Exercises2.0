@@ -1,0 +1,93 @@
+Scenario
+Your task is to write and test a function which takes two arguments (a year and a month) and returns the number of days for the given month/year pair (while only February is sensitive to the year value, your function should be universal).
+
+The initial part of the function is ready. Now, convince the function to return None if its arguments don't make sense.
+
+Of course, you can (and should) use the previously written and tested function (LAB 4.3.1.6). It may be very helpful. We encourage you to use a list filled with the months' lengths. You can create it inside the function - this trick will significantly shorten the code.
+
+We've prepared a testing code. Expand it to include more test cases.
+
+###################################################################################################################################
+
+def is_year_leap(year):
+    if (year % 4 == 0 and year % 100 != 0) or (year % 400 == 0):
+        return True
+    return False
+
+test_data = [1900, 2000, 2016, -1987]
+test_results = [False, True, True, False]
+for i in range(len(test_data)):
+	yr = test_data[i]
+	print(yr,"->",end="")
+	result = is_year_leap(yr)
+	if result == test_results[i]:
+		print("OK")
+	else:
+		print("Failed")
+
+
+def days_in_month(year, month):
+ # Lista cu numărul de zile pe lună (februarie e 28 implicit)
+    days_per_month = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
+    
+    # Validare: dacă luna nu e între 1 și 12, returnăm None
+    if month < 1 or month > 12:
+        return None
+    
+    # Ajustăm februarie în funcție de anul bisect
+    if month == 2:
+        if is_year_leap(year):
+            return 29
+        return 28
+    
+    # Pentru alte luni, returnăm direct din listă (luna 1 = index 0)
+    return days_per_month[month - 1]
+
+
+
+test_years = [1900, 2000, 2016, 1987]
+test_months = [2, 2, 1, 11]
+test_results = [28, 29, 31, 30]
+for i in range(len(test_years)):
+	yr = test_years[i]
+	mo = test_months[i]
+	print(yr, mo, "->", end="")
+	result = days_in_month(yr, mo)
+	if result == test_results[i]:
+		print("OK")
+	else:
+		print("Failed")
+
+# Teste suplimentare
+print("\nTeste suplimentare:")
+extra_tests = [
+    (2020, 2, 29),   # An bisect, februarie
+    (2021, 2, 28),   # An normal, februarie
+    (2023, 4, 30),   # Aprilie
+    (2023, 13, None), # Lună invalidă
+    (2023, 0, None)   # Lună invalidă
+]
+for year, month, expected in extra_tests:
+    print(year, month, "->", end="")
+    result = days_in_month(year, month)
+    if result == expected:
+        print("OK")
+    else:
+        print("Failed")
+
+#RETURN:
+1900 ->OK
+2000 ->OK
+2016 ->OK
+1987 ->OK
+1900 2 ->OK
+2000 2 ->OK
+2016 1 ->OK
+1987 11 ->OK
+
+Teste suplimentare:
+2020 2 ->OK
+2021 2 ->OK
+2023 4 ->OK
+2023 13 ->OK
+2023 0 ->OK
