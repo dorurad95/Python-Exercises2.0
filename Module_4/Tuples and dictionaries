@@ -1,0 +1,21 @@
+my_tuple = (1, 10, 100, 1000)
+
+print(my_tuple[0]) 
+print(my_tuple[-1])
+print(my_tuple[1:])
+print(my_tuple[:-2])
+
+for elem in my_tuple:
+    print(elem)
+
+#Return:
+1
+1000
+(10, 100, 1000)
+(1, 10)
+1
+10
+100
+1000
+
+# The similarities may be misleading - don't try to modify a tuple's contents! It's not a list!
