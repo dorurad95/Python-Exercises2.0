@@ -19,3 +19,243 @@ for elem in my_tuple:
 1000
 
 # The similarities may be misleading - don't try to modify a tuple's contents! It's not a list!
+####################################################################################################################################################################
+the len() function accepts tuples, and returns the number of elements contained inside;
+the + operator can join tuples together (we've shown you this already)
+the * operator can multiply tuples, just like lists;
+the in and not in operators work in the same way as in lists.
+
+my_tuple = (1, 10, 100)
+
+t1 = my_tuple + (1000, 10000)
+t2 = my_tuple * 3
+
+print(len(t2))
+print(t1)
+print(t2)
+print(10 in my_tuple)
+print(-10 not in my_tuple)
+
+#Return: 9
+(1, 10, 100, 1000, 10000)
+(1, 10, 100, 1, 10, 100, 1, 10, 100)
+True
+True
+
+####################################################################################################################################################################
+var = 123
+
+t1 = (1, )
+t2 = (2, )
+t3 = (3, var)
+
+t1, t2, t3 = t2, t3, t1
+
+print(t1, t2, t3)
+
+#Return:  (2,) (3, 123) (1,)
+# It shows three tuples interacting - in effect, the values stored in them "circulate" - t1 becomes t2, t2 becomes t3, and t3 becomes t1.
+
+####################################################################################################################################################################
+
+                # HOW TO MAKE A DICTIONARY:
+dictionary = {"cat": "chat", "dog": "chien", "horse": "cheval"}
+phone_numbers = {'boss': 5551234567, 'Suzy': 22657854310}
+empty_dictionary = {}
+
+print(dictionary)
+print(phone_numbers)
+print(empty_dictionary)
+
+#Return:
+{'dog': 'chien', 'horse': 'cheval', 'cat': 'chat'}
+{'Suzy': 5557654321, 'boss': 5551234567}
+{}
+
+####################################################################################################################################################################
+
+dictionary = {
+              "cat": "chat", 
+              "dog": "chien", 
+              "horse": "cheval"
+              }
+phone_numbers = {'boss': 5551234567, 
+                'Suzy': 22657854310
+                }
+empty_dictionary = {}
+
+print(dictionary['cat'])          #return: chat
+print(phone_numbers['Suzy'])      #return: 22657854310
+print(phone_numbers['president']) #this is a runtime error because you mustn't use a non-existent key
+
+#Return: chat
+         22657854310
+
+####################################################################################################################################################################
+#The following code safely searches for some French words:
+
+dictionary = {"cat": "chat", 
+              "dog": "chien", 
+              "horse": "cheval"
+            }
+words = ['cat', 'lion', 'horse']
+
+for word in words:
+    if word in dictionary:
+        print(word, "->", dictionary[word])
+    else:
+        print(word, "is not in dictionary")
+#Return: cat -> chat
+         lion is not in dictionary
+         horse -> cheval
+
+####################################################################################################################################################################
+        # How to use a dictionary: the keys()
+dictionary = {"cat": "chat", "dog": "chien", "horse": "cheval"}
+
+for key in dictionary.keys():
+    print(key, "->", dictionary[key])
+#Return:    cat -> chat
+            dog -> chien
+            horse -> cheval
+
+####################################################################################################################################################################
+            #The sorted() function:
+dictionary = {"cat": "chat", "dog": "chien", "horse": "cheval"}
+
+for key in sorted(dictionary.keys()):
+    print(key, "->", dictionary[key])
+
+#Return: cat -> chat
+         dog -> chien
+         horse -> cheval
+
+####################################################################################################################################################################
+            #How to use a dictionary: The items() and values() methods
+dictionary = {"cat": "chat", "dog": "chien", "horse": "cheval"}
+
+for english, french in dictionary.items():
+    print(english, "->", french)
+
+#Return: cat -> chat
+         dog -> chien
+         horse -> cheval
+####################################################################################################################################################################
+    #There is also a method named values(), which works similarly to keys(), but returns values.
+
+dictionary = {"cat": "chat", "dog": "chien", "horse": "cheval"}
+
+for french in dictionary.values():
+    print(french)
+
+#Return: chat
+         chien
+         cheval
+#As the dictionary is not able to automatically find a key for a given value, the role of this method is rather limited.
+####################################################################################################################################################################
+
+                #How to use a dictionary: modifying and adding values
+
+
+dictionary = {"cat": "chat", "dog": "chien", "horse": "cheval"}
+
+dictionary['cat'] = 'minou'
+print(dictionary)
+
+#Return: {'cat': 'minou', 'dog': 'chien', 'horse': 'cheval'}
+
+####################################################################################################################################################################
+
+            # Adding a new key
+dictionary = {"cat": "chat", "dog": "chien", "horse": "cheval"}
+
+dictionary['swan'] = 'cygne'
+print(dictionary)
+
+#Return: {'cat': 'chat', 'dog': 'chien', 'horse': 'cheval', 'swan': 'cygne'}
+
+####################################################################################################################################################################
+        #update() method:
+dictionary = {"cat": "chat", "dog": "chien", "horse": "cheval"}
+
+dictionary.update({"duck": "canard"})
+print(dictionary)
+#Return: {'cat': 'chat', 'dog': 'chien', 'horse': 'cheval', 'duck': 'canard'}
+####################################################################################################################################################################
+
+            #Removing key:
+dictionary = {"cat": "chat", "dog": "chien", "horse": "cheval"}
+
+del dictionary['dog']
+print(dictionary)
+#Return:             {'cat': 'chat', 'horse': 'cheval'}   #this is return after deleting the "dog"
+#Normal Return:      {'cat': 'chat', 'dog': 'chien', 'horse': 'cheval'}
+
+####################################################################################################################################################################
+
+            # Tuples and dictionaries can work together
+Let's imagine the following problem:
+
+you need a program to evaluate the students' average scores;
+the program should ask for the student's name, followed by her/his single score;
+the names may be entered in any order;
+entering an empty name finishes the inputting of the data (note 1: entering an empty score will raise the ValueError exception, but don't worry about that now, you'll see how to handle such cases when we talk about exceptions in the second part of the Python Essentials course series)
+a list of all names, together with the evaluated average score, should be then emitted.
+
+school_class = {}
+
+while True:
+    name = input("Enter the student's name: ")
+    if name == '':
+        break
+    
+    score = int(input("Enter the student's score (0-10): "))
+    if score not in range(0, 11):
+	    break
+    
+    if name in school_class:
+        school_class[name] += (score,)
+    else:
+        school_class[name] = (score,)
+        
+for name in sorted(school_class.keys()):
+    adding = 0
+    counter = 0
+    for score in school_class[name]:
+        adding += score
+        counter += 1
+    print(name, ":", adding / counter)
+
+#Return:
+Enter the student's name: Bob
+Enter the student's score (0-10): 7
+Enter the student's name: Andy
+Enter the student's score (0-10): 3
+Enter the student's name: Bob
+Enter the student's score (0-10): 2
+Enter the student's name: Andy
+Enter the student's score (0-10): 10
+Enter the student's name: Andy
+Enter the student's score (0-10): 3
+Enter the student's name: Bob
+Enter the student's score (0-10): 9
+Enter the student's name:
+Andy : 5.333333333333333
+Bob : 6.0
+
+Now, let's analyze it line by line:
+
+line 1: create an empty dictionary for the input data; the student's name is used as a key, while all the associated scores are stored in a tuple (the tuple may be a dictionary value - that's not a problem at all)
+line 3: enter an "infinite" loop (don't worry, it'll break at the right moment)
+line 4: read the student's name here;
+line 5-6: if the name is an empty string (), leave the loop;
+line 8: ask for one of the student's scores (an integer from the range 0-10)
+line 9-10: if the score entered is not within the range from 0 to 10, leave the loop;
+line 12-13: if the student's name is already in the dictionary, lengthen the associated tuple with the new score (note the += operator)
+line 14-15: if this is a new student (unknown to the dictionary), create a new entry - its value is a one-element tuple containing the entered score;
+line 17: iterate through the sorted students' names;
+line 18-19: initialize the data needed to evaluate the average (sum and counter)
+line 20-22: we iterate through the tuple, taking all the subsequent scores and updating the sum, together with the counter;
+line 23: evaluate and print the student's name and average score.
+
+
